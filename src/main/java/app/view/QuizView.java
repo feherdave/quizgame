@@ -178,18 +178,21 @@ public class QuizView {
             // Okay, this could have been nicer...
             userDailyStatsOpt.ifPresentOrElse(
                     userDailyStatsEntities -> {
-                        Long goodAnswers = 0L;
-                        Long badAnswers = 0L;
+                        if (userDailyStatsEntities.size() > 0) {
+                            Long goodAnswers = 0L;
+                            Long badAnswers = 0L;
 
-                        for (UserDailyStatsEntity userDailyStatsEntity : userDailyStatsEntities) {
-                            goodAnswers += userDailyStatsEntity.getGoodAnswers();
-                            badAnswers += userDailyStatsEntity.getBadAnswers();
+                            for (UserDailyStatsEntity userDailyStatsEntity : userDailyStatsEntities) {
+                                goodAnswers += userDailyStatsEntity.getGoodAnswers();
+                                badAnswers += userDailyStatsEntity.getBadAnswers();
+                            }
+
+                            model.addAttribute("numgoodanswers", goodAnswers);
+                            model.addAttribute("numbadanswers", badAnswers);
+                            model.addAttribute("nostats", false);
+                        } else {
+                            model.addAttribute("nostats", true);
                         }
-
-                        model.addAttribute("numgoodanswers", goodAnswers);
-                        model.addAttribute("numbadanswers", badAnswers);
-                        model.addAttribute("nostats", false);
-
                     },
                     () -> { model.addAttribute("nostats", true); });
 
