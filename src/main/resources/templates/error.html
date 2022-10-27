@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dave's Quiz App</title>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- navigation pane -->
+    <nav th:replace="~{navbar :: navbar}"></nav>
+
+    <!-- main section -->
+    <main>
+        <div class="content">
+            <h1>Oops, something went wrong!</h1>
+            <p>We are very sorry but our server was unable to process your request.</p>
+            <p>Status code: <b>[[${statuscode}]]</b></p>
+            <p>Message: <b>[[${message}]]</b></p>
+        </div>
+    </main>
+</body>
+</html>

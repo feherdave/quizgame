@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Dave's Quiz App - Login</title>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+    <div class="content login">
+        <h1 class="logo">DAVE'S QUIZ APP</h1>
+
+        <h2>Please login</h2>
+
+        <div class="error" th:if="${param.error} != null"><p>Please enter a valid username/password!</p></div>
+
+        <div class="login-form-container">
+            <form action="/login" method="POST">
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" />
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" />
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <p>New user? <a href="/register">Click here to register!</a></p>
+    </div>
+</body>
+</html>

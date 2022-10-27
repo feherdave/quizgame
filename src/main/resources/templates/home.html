@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dave's Quiz App</title>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- navigation pane -->
+    <nav th:replace="~{navbar :: navbar}"></nav>
+
+    <!-- main section -->
+    <main>
+        <div class="content">
+            <h1 th:if="${quizapp.userLoggedin}">Hi, [[${quizapp.username}]]!</h1>
+            <h1 th:if="${not quizapp.userLoggedin}">Hi there!</h1>
+            <p>Welcome to this tiny demo quiz app written by feherdave.</p>
+            <p>This app is intended to demonstrate its author's knowledge in Java, Springboot, SQL, HTML and CSS.</p>
+            <p>Currently you can:
+                <ul>
+                    <li>Register / delete account</li>
+                    <li>Solve existing quizzes</li>
+                    <li>Submit new quizzes</li>
+                    <li>Check your statistics</li>
+                </ul>
+            </p>
+            <p>Have fun!</p>
+            <p th:if="${quizapp.userLoggedin}">Do you want to <a href="/play">play</a>?</p>
+        </div>
+    </main>
+</body>
+</html>

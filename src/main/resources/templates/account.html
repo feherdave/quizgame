@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dave's Quiz App</title>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- navigation pane -->
+    <nav th:replace="~{navbar :: navbar}"></nav>
+
+    <!-- main section -->
+    <main>
+        <div class="content">
+            <h1>User account</h1>
+            <hr />
+            <div id="update-result" class="hidden"></div>
+            <form method="post" action="#" class="quiz-contribute-form">
+                <div class="account-form-content">
+                    <label for="username">Username</label>
+                    <input name="username" id="username" type="text" required minlength="5" disabled th:value="${username}" />
+                    <label for="email">E-mail</label>
+                    <input name="email" id="email" type="email" required th:value="${email}" />
+                    <label for="new_password">New password</label>
+                    <input name="new_password" id="new_password" type="password" required minlength="5" />
+                    <label for="new_password2">New password again</label>
+                    <input name="new_password2" id="new_password2" type="password" required minlength="5" />
+                    <label for="password">Old password</label>
+                    <input name="password" id="password" type="password" required minlength="5" />
+                </div>
+                <button type="button" id="update">Update</button>
+                <button type="button" id="delete" class="dangerous-button">Remove account</button>
+            </form>
+        </div>
+    </main>
+
+    <script type="text/javascript" src="js/account.js"></script>
+</body>
+</html>

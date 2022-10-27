@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dave's Quiz App</title>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- navigation pane -->
+    <nav th:replace="~{navbar :: navbar}"></nav>
+
+    <!-- main section -->
+    <main>
+        <div class="content">
+            <h1>Register</h1>
+            <p>Currently there are [[${userCount}]] happy users of the quiz app.</p>
+            <p>Please fill in the form below to register and be one of them!</p>
+            <hr />
+            <div id="registration-result" class="hidden"></div>
+            <form method="post" action="#" class="quiz-contribute-form">
+                <div class="register-form-content">
+                    <label for="username">Username</label>
+                    <input name="username" id="username" type="text" required />
+                    <label for="email">E-mail</label>
+                    <input name="email" id="email" type="email" required />
+                    <label for="password">Password</label>
+                    <input name="password" id="password" type="password" required />
+                    <label for="password2">Password again</label>
+                    <input name="password2" id="password2" type="password" required />
+                </div>
+                <button type="button" id="register">Register</button>
+            </form>
+        </div>
+    </main>
+
+    <script type="text/javascript" src="js/register.js"></script>
+</body>
+</html>

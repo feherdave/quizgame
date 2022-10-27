@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<body>
+  <!-- Navigation bar template -->
+  <nav th:fragment="navbar">
+    <div class="nav-content">
+      <div class="logo">
+        <a class="logo-link" href="/home">DAVE'S QUIZ APP</a>
+      </div>
+      <div class="nav-usermenu">
+        <div th:if="${quizapp.userLoggedin}">
+          <a class="nav-link" href="/play" title="Play a game">Play</a>
+          <a class="nav-link" href="/stats" title="Show statistics">Stats</a>
+          <a class="nav-link" href="/contribute" title="Add a new quiz">Contribute</a>
+          <a class="nav-link" href="/account">User account</a>
+          <a class="nav-link" href="/logout">Logout</a>
+        </div>
+
+        <div th:if="${not quizapp.userLoggedin}">
+          <a class="nav-link" href="/login">Login</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</body>
+</html>

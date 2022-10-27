@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dave's Quiz App</title>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- navigation pane -->
+    <nav th:replace="~{navbar :: navbar}"></nav>
+
+    <!-- main section -->
+    <main>
+        <div class="content">
+            <h1>Contribute</h1>
+            <p>Welcome to the contribution page!</p>
+            <p>Using the form below you can add new quizzes to the DB to make the game more exciting!</p>
+            <p><i>Note: you must check at lest one option as a solution!</i></p>
+            <hr />
+            <div th:if="${initial != true}">
+                <div class="error-notification-box" th:if="${#arrays.length(errors) != 0}">
+                    <p>Submission was unsuccessful because of the following errors:</p>
+                    <ul>
+                        <li th:each="error : ${errors}">[[${error}]]</li>
+                    </ul>
+                </div>
+                <div class="success-notification-box" th:if="${#arrays.length(errors) == 0}">
+                    <p>Your quiz was successfully submitted!</p>
+                </div>
+            </div>
+            <form method="post" action="#" class="quiz-contribute-form" th:action="@{/contribute}" th:object="${quiz}">
+                <div class="quiz-contribute-form-content">
+                    <label for="quiztitle">Title</label>
+                    <input name="title" id="quiztitle" type="text" th:field="*{title}" th:value="*{title}" />
+                    <label for="quiztext">Text</label>
+                    <textarea name="text" id="quiztext" type="text" th:field="*{text}" th:value="*{text}"></textarea>
+
+                    <table class="quiz-options-table">
+                        <tr class="quiz-options-table-head">
+                            <th>Option no.</th>
+                            <th>Valid</th>
+                            <th>Option text</th>
+                        </tr>
+                        <tr class="quiz-options-table-row" th:each="option, optStat : *{options}">
+                            <td><span>#[[${optStat.index} + 1]]</span></td>
+                            <td><input type="checkbox" name="option-checkbox" th:checked="${option.isValidOption == true}" th:field="*{options[__${optStat.index}__].isValidOption}" /></td>
+                            <td>
+                                <div>
+                                    <textarea name="option-text" th:field="*{options[__${optStat.index}__].text}">[[${option.text}]]</textarea>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <button type="submit" id="quiz-contribute-submit">Submit</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <p>This demo app is made by feherdave.<br />Feel free to use it in any way you like!</p>
+        <a href="" target="_blank" title="feherdave on LinkedIn"></a>
+        <a href="" target="_blank" title="feherdave on GitHub"></a>
+    </footer>
+</body>
+</html>

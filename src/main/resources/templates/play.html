@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dave's Quiz App</title>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- navigation pane -->
+    <nav th:replace="~{navbar :: navbar}"></nav>
+
+    <!-- main section -->
+    <main>
+        <div class="content">
+            <div th:if="${quizapp.notEnoughQuizzesInDB}">
+                <h1>Ooops, there are not enough quizzes in DB! :(</h1>
+                <p>We are sorry but currently, there are only [[${quizapp.numberOfQuizzes}]] quizzes exist in DB.</p>
+                <p>To play a game, at least 10 are required.</p>
+                <p>Please <a href="/contribute">add</a> some quizzes to the DB first!</p>
+            </div>
+            <div th:if="${not quizapp.notEnoughQuizzesInDB}">
+                <input type="hidden" id="quizid" th:value="${quizid}" />
+                <h3>[[${quiztitle}]]</h3>
+                <h4>[[${quiztext}]]</h4>
+                <table id="quiz-play-table" class="quiz-play-table">
+                    <tr class="quiz-play-table-row" th:each="option, optStat : ${quizoptions}">
+                        <td class="checkbox-cell"><input type="checkbox" th:id="${'option-checkbox[' + optStat.index + ']'}" th:name="${'option-checkbox[' + optStat.index + ']'}" /></td>
+                        <td class="option-cell"><p>[[${option}]]</p></td>
+                    </tr>
+                </table>
+                <div id="quiz-play-result"></div>
+                <button type="button" id="quiz-play-submit" disabled class="disabled">Submit</button>
+                <button type="button" id="quiz-play-next" disabled class="disabled">Next</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <p>This demo app is made by feherdave.<br />Feel free to use it in any way you like!</p>
+        <a href="" target="_blank" title="feherdave on LinkedIn"></a>
+        <a href="" target="_blank" title="feherdave on GitHub"></a>
+    </footer>
+
+    <script type="text/javascript" src="js/play.js"></script>
+</body>
+</html>

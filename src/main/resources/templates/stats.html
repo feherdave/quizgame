@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dave's Quiz App</title>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- navigation pane -->
+    <nav th:replace="~{navbar :: navbar}"></nav>
+
+    <!-- main section -->
+    <main>
+        <div class="content">
+            <h1>Your statistics</h1>
+
+            <p th:if="${not nostats}">Up to now you submitted altogether [[${numgoodanswers + numbadanswers}]] answers, from which you had <b>[[${numgoodanswers}]]</b> GOOD answers and <b>[[${numbadanswers}]]</b> BAD answers.</p>
+            <p th:if="${nostats}">There are no stats available for you at the moment. Maybe you haven't solved any quizzes yet!</p>
+        </div>
+    </main>
+</body>
+</html>
